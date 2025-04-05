@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internship Application - Trivya</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="Text Logo.png" alt="Trivya Logo" class="logo" />
+    <h2>Internship Application at Trivya</h2>
+
+    <form id="internshipForm">
+      <label>Full Name</label>
+      <input type="text" name="full_name" required placeholder="Enter your Full Name" />
+
+      <label>Email</label>
+      <input type="email" name="email" required placeholder="Enter your email address" />
+
+      <label>Mobile Number</label>
+      <input type="text" name="mobile" required placeholder="Enter your mobile number" />
+
+      <label>Role of Intern</label>
+      <select name="role" required>
+        <option value="" disabled selected>Select from drop down list</option>
+        <option>Front-End Developer</option>
+        <option>Back-End Developer</option>
+        <option>Research and Development (R&D)</option>
+        <option>Marketing</option>
+      </select>
+
+      <label>LinkedIn Profile</label>
+      <input type="text" name="linkedin" placeholder="Enter LinkedIn Profile" />
+
+      <label>Skills</label>
+      <input type="text" name="skills" required placeholder="Enter your skills" />
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('internshipForm');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault(); // prevent normal form submission
+
+      const formData = new FormData(form);
+      const url = "https://script.google.com/macros/s/AKfycbwl_ng5AwEOXj-BSYzaKgQscdfquW3Pv31gk4vb2qSLdKjItWucTcrC04okpIUIADTniw/exec";
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          body: formData
+        });
+
+        if (response.ok) {
+          alert("Successfully data submitted");
+          form.reset(); // Optional: Reset form after submission
+        } else {
+          alert("Submission failed. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error!", error.message);
+        alert("An error occurred. Please check console.");
+      }
+    });
+  </script>
+</body>
+</html>
